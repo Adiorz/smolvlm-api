@@ -1,0 +1,20 @@
+{
+    "name": "SmolVLM API Dev Container",
+    "image": "smolvlm-api:latest",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "charliermarsh.ruff"
+            ]
+        }
+    },
+    "mounts": [
+        "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+    ],
+    "features": {
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+    },
+    "postCreateCommand": "pip install -e '.[dev]' && pre-commit install",
+    "runArgs": ["--gpus", "all"]
+}
